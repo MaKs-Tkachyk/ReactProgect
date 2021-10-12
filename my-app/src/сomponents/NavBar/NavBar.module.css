@@ -1,0 +1,13 @@
+.nav {
+  grid-area: n;
+  background-color: #b7adff;
+  color: #fff;
+  font-weight: bold;
+  font-size: 20px;
+}
+.nav div {
+  margin: 10px 0px 0px 20px;
+}
+.active {
+  color: gold;
+}
