@@ -1,2 +1,16 @@
+.dialogs{
+ display: grid;
+ grid-template-columns: 2fr 10fr;
+}
+.dialogs__dialogsItems{
 
+}
+.dialog__item{
 
+}
+.dialogs__messages{
+
+}
+.dialogs__message{
+
+}
