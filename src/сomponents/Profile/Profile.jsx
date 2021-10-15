@@ -1,15 +1,11 @@
 
 import MyPosts from "./MyPosts/MyPosts"
 import s from "./Profile.module.css"
+import ProfileInfo from "./ProfileInfo/ProfileInfo"
 const Profile = () => {
     return (
         <div >
-            <div className={s.content__logo}>
-                <img src="https://www.imgacademy.com/themes/custom/imgacademy/images/helpbox-contact.jpg" />
-            </div>
-            <div>
-                ava+description
-            </div>
+            <ProfileInfo />
             <MyPosts />
         </div>
     )

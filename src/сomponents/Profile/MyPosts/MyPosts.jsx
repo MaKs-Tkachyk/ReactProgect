@@ -2,6 +2,18 @@
 import s from "./MyPosts.module.css"
 import Post from "./Post/Post"
 const MyPosts = () => {
+
+    let postsData = [
+        { message: "Hi, how are you? ", likeCount :"15",id: "1" },
+        { message: "It`s my first post", likeCount :"25",id: "2" },
+    ]
+
+
+
+
+
+
+
     return (
 
         <div className={s.MyPost}>
