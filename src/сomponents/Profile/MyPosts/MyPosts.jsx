@@ -1,12 +1,20 @@
 
+import React from "react"
 import s from "./MyPosts.module.css"
 import Post from "./Post/Post"
 const MyPosts = (props) => {
-  debugger
+
 
 
     let postsElements = props.posts.map((post) => <Post message={post.message} likeCount={post.likeCount} />)
+    
+let newPostElement = React.createRef()
 
+
+    let addPost = ()=>{
+let text = newPostElement.current.value
+alert(text)
+    }
 
 
     return (
@@ -14,8 +22,8 @@ const MyPosts = (props) => {
         <div className={s.MyPost}>
             myPost
             <div className={s.MyPost__formWritter}>
-                <textarea name="textarea" className={s.MyPost__textarea} placeholder="your news..."></textarea>
-                <button className={s.MyPost__button}  >Add Post</button>
+                <textarea ref={newPostElement}   name="textarea" className={s.MyPost__textarea} placeholder="your news..."></textarea>
+                <button className={s.MyPost__button} onClick={addPost}  >Add Post</button>
             </div>
             <div>
                 newPost
