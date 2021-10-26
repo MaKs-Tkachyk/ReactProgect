@@ -7,13 +7,16 @@ const MyPosts = (props) => {
 
 
     let postsElements = props.posts.map((post) => <Post message={post.message} likeCount={post.likeCount} />)
-    
-let newPostElement = React.createRef()
+    let newPostElement = React.createRef()
 
 
-    let addPost = ()=>{
-let text = newPostElement.current.value
-alert(text)
+    let addPost = () => {
+        props.addPost()
+    }
+
+    let onPostChange = () => {
+        let text = newPostElement.current.value
+        props.updateNewPostText(text)
     }
 
 
@@ -22,7 +25,8 @@ alert(text)
         <div className={s.MyPost}>
             myPost
             <div className={s.MyPost__formWritter}>
-                <textarea ref={newPostElement}   name="textarea" className={s.MyPost__textarea} placeholder="your news..."></textarea>
+                <textarea   onChange={onPostChange}   ref={newPostElement} name="textarea" className={s.MyPost__textarea} placeholder="your news..."
+                value={props.newPostText}/>
                 <button className={s.MyPost__button} onClick={addPost}  >Add Post</button>
             </div>
             <div>
