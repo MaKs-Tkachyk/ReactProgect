@@ -11,24 +11,24 @@ import Message from "./Message/Message";
 const Dialogs = (props) => {
 
     let newPostElement = React.createRef()
-
+    
+    let state = props.dialogsPage
 
 
 
     let addDialog = () => {
-        //props.addDialog()
-        props.dispatch(AddDialogActionCreator())
+        props.addDialog()
+
     }
 
     let onPostChange = () => {
         let text = newPostElement.current.value
-        //props.updateNewDialogText(text)
-        props.dispatch(newDialogsTextActionCreator(text))
-
+        props.updateNewDialogText(text)
+     
     }
 
-    let dialogsElements = props.state.dialogs.map((users) => <DialogItem name={users.name} id={users.id} />)
-    let messagesElements = props.state.messages.map((messages) => <Message message={messages.message} id={messages.id} />)
+    let dialogsElements = state.dialogs.map((users) => <DialogItem name={users.name} id={users.id} />)
+    let messagesElements = state.messages.map((messages) => <Message message={messages.message} id={messages.id} />)
 
 
     return (
@@ -39,7 +39,7 @@ const Dialogs = (props) => {
             <div className={s.dialogs__messages}>
                 {messagesElements}
                 <div className={s.dialogs__formWritter}>
-                    <textarea onChange={onPostChange} ref={newPostElement} value={props.state.newDialogsText} className={s.dialogs__textarea} placeholder="your news..."></textarea>
+                    <textarea onChange={onPostChange} ref={newPostElement} value={state.newDialogsText} className={s.dialogs__textarea} placeholder="your news..."></textarea>
                     <button className={s.dialogs__button} onClick={addDialog}  >Add Post</button>
                 </div>
             </div>

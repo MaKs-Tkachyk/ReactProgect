@@ -1,8 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router';
 import './App.css';
-import store from './Redux/state';
-import Dialogs from './сomponents/Dialogs/Dialogs';
+import DialogsContainer from './сomponents/Dialogs/DialogsContainer';
 import Header from './сomponents/Header/Header';
 import Music from './сomponents/Music/Music';
 import NavBar from './сomponents/NavBar/NavBar';
@@ -11,6 +10,7 @@ import Profile from './сomponents/Profile/Profile';
 import Settings from './сomponents/Settings/Settings';
 
 const App = (props) => {
+
     return (
         <div className="app-wrapper" >
             <Header />
@@ -18,13 +18,12 @@ const App = (props) => {
             <div className="app-wrapper__content">
                 <Route path="/profile" render={() =>
                     <Profile
-                        state={props.state.profilePage}
-                        dispatch={props.dispatch}
+                        store={props.store}
+
                     />} />
                 <Route path="/dialogs" render={() =>
-                    <Dialogs
-                        state={props.state.dialogsPage}
-                        dispatch={props.dispatch}
+                    <DialogsContainer
+                        store={props.store}
                     />} />
                 <Route path="/music" render={() => <Music />} />
                 <Route path="/news" render={() => <News />} />
