@@ -9,9 +9,9 @@ import Message from "./Message/Message";
 
 
 const Dialogs = (props) => {
-
+  
     let newPostElement = React.createRef()
-    
+
     let state = props.dialogsPage
 
 
@@ -24,11 +24,11 @@ const Dialogs = (props) => {
     let onPostChange = () => {
         let text = newPostElement.current.value
         props.updateNewDialogText(text)
-     
+
     }
 
-    let dialogsElements = state.dialogs.map((users) => <DialogItem name={users.name} id={users.id} />)
-    let messagesElements = state.messages.map((messages) => <Message message={messages.message} id={messages.id} />)
+    let dialogsElements = state.dialogs.map((users) => <DialogItem name={users.name} key={users.id} id={users.id} />)
+    let messagesElements = state.messages.map((messages) => <Message message={messages.message} key={messages.id} id={messages.id} />)
 
 
     return (

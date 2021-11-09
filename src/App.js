@@ -8,6 +8,7 @@ import NavBar from './сomponents/NavBar/NavBar';
 import News from './сomponents/News/News';
 import Profile from './сomponents/Profile/Profile';
 import Settings from './сomponents/Settings/Settings';
+import UsersContainer from './сomponents/Users/UsersContainer';
 
 const App = (props) => {
 
@@ -28,6 +29,7 @@ const App = (props) => {
                 <Route path="/music" render={() => <Music />} />
                 <Route path="/news" render={() => <News />} />
                 <Route path="/settings" render={() => <Settings />} />
+                <Route path="/users" render={() => <UsersContainer />} />
             </div>
         </div>
     );
