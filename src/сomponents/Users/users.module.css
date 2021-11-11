@@ -2,3 +2,10 @@
   width: 65px;
   border-radius: 25px;
 }
+
+.selectedPage{
+  font-weight: bold;
+}
+.pageNumber span{
+  margin-right: 10px;
+}
