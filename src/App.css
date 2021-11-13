@@ -3,6 +3,12 @@
   padding: 0;
   box-sizing: border-box;
 }
+h1,
+ul,
+li {
+  padding: 0;
+  margin: 0;
+}
 body {
   margin-top: 10px;
 }

@@ -6,7 +6,7 @@ import Header from './сomponents/Header/Header';
 import Music from './сomponents/Music/Music';
 import NavBar from './сomponents/NavBar/NavBar';
 import News from './сomponents/News/News';
-import Profile from './сomponents/Profile/Profile';
+import ProfileContainer from './сomponents/Profile/ProfileContainer';
 import Settings from './сomponents/Settings/Settings';
 import UsersContainer from './сomponents/Users/UsersContainer';
 
@@ -18,7 +18,7 @@ const App = (props) => {
             <NavBar />
             <div className="app-wrapper__content">
                 <Route path="/profile" render={() =>
-                    <Profile
+                    <ProfileContainer
                         store={props.store}
 
                     />} />

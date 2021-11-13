@@ -1,5 +1,37 @@
-.content__logo img{
-    width: 100%;
-    height: 200px;
-    border-radius: 7px;
-  }
+.content__logo img {
+  width: 100%;
+  height: 200px;
+  border-radius: 7px;
+}
+.user_acaunt {
+  display: flex;
+  border-radius: 10px;
+}
+.userImg img {
+  margin-right: 40px;
+  border-radius: 10px;
+}
+.user_Information h1 {
+  text-transform: uppercase;
+  font-family: ui-rounded;
+  margin-bottom: 20px;
+}
+.social_groups img {
+  width: 20px;
+  margin-right: 10px;
+  background: #ffeb3b;
+  padding: 3px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 500ms
+}
+.social_groups img:hover {
+  background: #ff9a3b;
+}
+.status,
+.aboutUser {
+  font-weight: bold;
+}
+.social_groups {
+  margin-top: 10px;
+}
