@@ -1,23 +1,29 @@
 import { connect } from "react-redux"
-import { followAC, setCurrentPageAC, setTotalCountAC, setUsersAC, unFollowAC } from "../../Redux/users-reducer"
+import { followAC, setCurrentPageAC, setTotalCountAC, setUsersAC, toggleSwitchingAC, unFollowAC } from "../../Redux/users-reducer"
 import axios from "axios"
 import React from "react"
 import Users from "./Users"
+import Preloader from "../common/preloader/Preloader"
+
 
 
 
 class containerComponent extends React.Component {
 
     componentDidMount() {
+        this.props.toggleSwitching(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+            this.props.toggleSwitching(false)
             this.props.setUsers(response.data.items)
             this.props.setTotalCount(response.data.totalCount)
         })
     }
 
     onchangePage = (pageNumber) => {
+        this.props.toggleSwitching(true)
         this.props.setCurrentPage(pageNumber)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
+            this.props.toggleSwitching(false)
             this.props.setUsers(response.data.items)
         })
     }
@@ -27,18 +33,22 @@ class containerComponent extends React.Component {
 
 
     render() {
+        return <>
+            {this.props.isSwitching ? <Preloader /> : null}
+            <Users totalUserCount={this.props.totalUserCount}
+                pageSize={this.props.pageSize}
+                onchangePage={this.onchangePage}
+                currentPage={this.props.currentPage}
+                users={this.props.users}
+                unfollow={this.props.unfollow}
+                follow={this.props.follow}
+            />
 
-        return <Users   totalUserCount={this.props.totalUserCount} 
-        pageSize={this.props.pageSize} 
-        onchangePage = {this.onchangePage}
-        currentPage = {this.props.currentPage}
-        users={this.props.users}
-        unfollow={this.props.unfollow}
-        follow={this.props.follow}
-        />
-    
 
+
+        </>
     }
+
 }
 
 
@@ -54,6 +64,7 @@ let mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUserCount: state.usersPage.totalUserCount,
         currentPage: state.usersPage.currentPage,
+        isSwitching: state.usersPage.isSwitching
     }
 }
 
@@ -73,6 +84,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         setTotalCount: (countPage) => {
             dispatch(setTotalCountAC(countPage))
+        },
+        toggleSwitching: (isSwitching) => {
+            dispatch(toggleSwitchingAC(isSwitching))
         }
     }
 }

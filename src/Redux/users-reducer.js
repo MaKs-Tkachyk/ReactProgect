@@ -3,11 +3,16 @@ const UN_FOLLOW = "UN-FOLLOW"
 const SET_USERS = " SET-USERS"
 const SET_CURRENT_PAGE = "SET-CURRENT-PAGE"
 const SET_TOTAL_COUNT = "SET-TOTAL-COUNT"
+const TOGGLE_IS_SWITCHING = "TOGGLE-IS-SWITCHING"
+
+
+
 let initialState = {
     users: [],
     pageSize: 5,
     totalUserCount: 20,
-    currentPage: 2
+    currentPage: 1,
+    isSwitching: true
 }
 
 
@@ -52,6 +57,10 @@ const usersReducer = (state = initialState, action) => {
             return { ...state, totalUserCount: action.totalUserCount }
 
         }
+        case TOGGLE_IS_SWITCHING: {
+            return { ...state, isSwitching: action.isSwitching }
+
+        }
         default:
             return state;
     }
@@ -63,4 +72,8 @@ export const unFollowAC = (userId) => ({ type: UN_FOLLOW, userId })
 export const setUsersAC = (users) => ({ type: SET_USERS, users })
 export const setCurrentPageAC = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage })
 export const setTotalCountAC = (totalUserCount) => ({ type: SET_TOTAL_COUNT, totalUserCount })
+export const toggleSwitchingAC = (isSwitching) => ({ type: TOGGLE_IS_SWITCHING, isSwitching })
+
+
+
 export default usersReducer
