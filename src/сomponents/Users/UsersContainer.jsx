@@ -44,9 +44,6 @@ class containerComponent extends React.Component {
                 unfollow={this.props.unFollow}
                 follow={this.props.follow}
             />
-
-
-
         </>
     }
 
