@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { follow, setCurrentPage, setTotalCount, setUsers, toggleSwitching, unFollow } from "../../Redux/users-reducer"
+import { follow, setCurrentPage, setTotalCount, setUsers, toggleSwitching, unfollow } from "../../Redux/users-reducer"
 import axios from "axios"
 import React from "react"
 import Users from "./Users"
@@ -12,8 +12,10 @@ class containerComponent extends React.Component {
 
     componentDidMount() {
         this.props.toggleSwitching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
-     
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
+            withCredentials: true,
+        }).then(response => {
+
             this.props.toggleSwitching(false)
             this.props.setUsers(response.data.items)
             this.props.setTotalCount(response.data.totalCount)
@@ -23,7 +25,8 @@ class containerComponent extends React.Component {
     onchangePage = (pageNumber) => {
         this.props.toggleSwitching(true)
         this.props.setCurrentPage(pageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize},`, 
+        { withCredentials: true, }).then(response => {
             this.props.toggleSwitching(false)
             this.props.setUsers(response.data.items)
         })
@@ -41,7 +44,7 @@ class containerComponent extends React.Component {
                 onchangePage={this.onchangePage}
                 currentPage={this.props.currentPage}
                 users={this.props.users}
-                unfollow={this.props.unFollow}
+                unfollow={this.props.unfollow}
                 follow={this.props.follow}
             />
         </>
@@ -90,4 +93,4 @@ let mapStateToProps = (state) => {
 // }
 
 
-export default connect(mapStateToProps, { follow, unFollow, setUsers, setCurrentPage, setTotalCount, toggleSwitching })(containerComponent)
+export default connect(mapStateToProps, { follow, unfollow, setUsers, setCurrentPage, setTotalCount, toggleSwitching })(containerComponent)

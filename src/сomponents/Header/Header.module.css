@@ -1,9 +1,26 @@
-.header{
-    grid-area: h ; 
-    background-color: #cdbbff;
-   }
-   .header img{
-     width: 50px;
-     margin: 4px 10px;
-   
-    }
+.header {
+  grid-area: h;
+  background-color: #cdbbff;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+.header img {
+  width: 50px;
+}
+.blockRegistration div {
+  display: inline-block;
+  color: #fff;
+  font-weight: bold;
+}
+.blockRegistration div a {
+  color: #fff;
+  font-weight: bold;
+  margin-left: 10px;
+  transition: 500ms;
+}
+.blockRegistration div a:hover {
+  color: rgb(223, 250, 103);
+}
