@@ -1,6 +1,5 @@
 import { connect } from "react-redux"
-import { follow, setCurrentPage, setTotalCount, setUsers, toggleSwitching, unfollow } from "../../Redux/users-reducer"
-import axios from "axios"
+import { follow, setCurrentPage, getUsers, unfollow, toggleFollowingProgress,  } from "../../Redux/users-reducer"
 import React from "react"
 import Users from "./Users"
 import Preloader from "../common/preloader/Preloader"
@@ -8,28 +7,16 @@ import Preloader from "../common/preloader/Preloader"
 
 
 
+
 class containerComponent extends React.Component {
 
     componentDidMount() {
-        this.props.toggleSwitching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
-            withCredentials: true,
-        }).then(response => {
-
-            this.props.toggleSwitching(false)
-            this.props.setUsers(response.data.items)
-            this.props.setTotalCount(response.data.totalCount)
-        })
+        this.props.getUsers(this.props.currentPage, this.props.pageNumber)
     }
 
     onchangePage = (pageNumber) => {
-        this.props.toggleSwitching(true)
+        this.props.getUsers(this.props.currentPage, this.props.pageNumber)
         this.props.setCurrentPage(pageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize},`, 
-        { withCredentials: true, }).then(response => {
-            this.props.toggleSwitching(false)
-            this.props.setUsers(response.data.items)
-        })
     }
 
 
@@ -46,6 +33,7 @@ class containerComponent extends React.Component {
                 users={this.props.users}
                 unfollow={this.props.unfollow}
                 follow={this.props.follow}
+                followingInProgress={this.props.followingInProgress}
             />
         </>
     }
@@ -65,32 +53,16 @@ let mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUserCount: state.usersPage.totalUserCount,
         currentPage: state.usersPage.currentPage,
-        isSwitching: state.usersPage.isSwitching
+        isSwitching: state.usersPage.isSwitching,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 
-// let mapDispatchToProps = (dispatch) => {
-//     return {
-//         follow: (userId) => {
-//             dispatch(followAC(userId))
-//         },
-//         unfollow: (userId) => {
-//             dispatch(unFollowAC(userId))
-//         },
-//         setUsers: (users) => {
-//             dispatch(setUsersAC(users))
-//         },
-//         setCurrentPage: (numberPage) => {
-//             dispatch(setCurrentPageAC(numberPage))
-//         },
-//         setTotalCount: (countPage) => {
-//             dispatch(setTotalCountAC(countPage))
-//         },
-//         toggleSwitching: (isSwitching) => {
-//             dispatch(toggleSwitchingAC(isSwitching))
-//         }
-//     }
-// }
 
-
-export default connect(mapStateToProps, { follow, unfollow, setUsers, setCurrentPage, setTotalCount, toggleSwitching })(containerComponent)
+export default connect(mapStateToProps,
+    {
+        follow, unfollow,
+         setCurrentPage,
+        toggleFollowingProgress,
+        getUsers
+    })(containerComponent)
