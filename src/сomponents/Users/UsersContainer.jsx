@@ -1,8 +1,10 @@
 import { connect } from "react-redux"
-import { follow, setCurrentPage, getUsers, unfollow, toggleFollowingProgress,  } from "../../Redux/users-reducer"
+import { follow, setCurrentPage, getUsers, unfollow, toggleFollowingProgress, } from "../../Redux/users-reducer"
 import React from "react"
 import Users from "./Users"
 import Preloader from "../common/preloader/Preloader"
+import { withAuthRedirect } from "../../hoc/withAuthRedirect"
+import { compose } from "redux"
 
 
 
@@ -18,9 +20,6 @@ class containerComponent extends React.Component {
         this.props.getUsers(this.props.currentPage, this.props.pageNumber)
         this.props.setCurrentPage(pageNumber)
     }
-
-
-
 
 
     render() {
@@ -42,11 +41,6 @@ class containerComponent extends React.Component {
 
 
 
-
-
-
-
-
 let mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
@@ -59,10 +53,11 @@ let mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps,
-    {
-        follow, unfollow,
-         setCurrentPage,
-        toggleFollowingProgress,
-        getUsers
-    })(containerComponent)
+
+
+export default compose(
+    connect(mapStateToProps, { follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers }),
+    withAuthRedirect
+)(containerComponent)
+
+
