@@ -1,5 +1,6 @@
 
 import React from "react";
+import { Redirect } from "react-router";
 import { AddDialogActionCreator, newDialogsTextActionCreator } from "../../Redux/dialogs-reducer";
 import DialogItem from "./DialogItem/DialogItem";
 import s from "./Dialogs.module.css";
@@ -9,7 +10,7 @@ import Message from "./Message/Message";
 
 
 const Dialogs = (props) => {
-  
+
     let newPostElement = React.createRef()
 
     let state = props.dialogsPage
@@ -30,6 +31,9 @@ const Dialogs = (props) => {
     let dialogsElements = state.dialogs.map((users) => <DialogItem name={users.name} key={users.id} id={users.id} />)
     let messagesElements = state.messages.map((messages) => <Message message={messages.message} key={messages.id} id={messages.id} />)
 
+    if (!props.isAuth) {
+        return <Redirect to="/login" />
+    }
 
     return (
         <div className={s.dialogs} >

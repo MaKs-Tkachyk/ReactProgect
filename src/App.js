@@ -3,6 +3,7 @@ import { Route } from 'react-router';
 import './App.css';
 import DialogsContainer from './сomponents/Dialogs/DialogsContainer';
 import HeaderContainer from './сomponents/Header/HeaderContainer';
+import Login from './сomponents/Login/Login';
 import Music from './сomponents/Music/Music';
 import NavBar from './сomponents/NavBar/NavBar';
 import News from './сomponents/News/News';
@@ -17,7 +18,7 @@ const App = (props) => {
             <HeaderContainer />
             <NavBar />
             <div className="app-wrapper__content">
-                <Route path='/profile/:userId' render={() =>
+                <Route path='/profile/:userId?' render={() =>
                     <ProfileContainer />} />
                 <Route path="/dialogs" render={() =>
                     <DialogsContainer/>} />
@@ -25,6 +26,7 @@ const App = (props) => {
                 <Route path="/news" render={() => <News />} />
                 <Route path="/settings" render={() => <Settings />} />
                 <Route path="/users" render={() => <UsersContainer />} />
+                <Route path="/login" render={() => <Login />} />
             </div>
         </div>
     );

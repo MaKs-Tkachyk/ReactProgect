@@ -1,7 +1,6 @@
 import axios from "axios";
 
 
-const baseURL = `https://social-network.samuraijs.com/api/1.0/`
 
 const inctanse = axios.create({
     withCredentials: true,
@@ -14,23 +13,24 @@ const inctanse = axios.create({
 
 export const usersAPI = {
     getUsers(currentPage, pageSize) {
-        return inctanse.get(baseURL + `users?page=${currentPage}&count=${pageSize}`).then(response => response.data)
+        return inctanse.get(`users?page=${currentPage}&count=${pageSize}`).then(response => response.data)
     },
     follow(userId) {
-        return inctanse.post(baseURL + `follow/${userId}`)
+        return inctanse.post(`follow/${userId}`)
     },
     unfollow(userId) {
-        return inctanse.delete(baseURL + `follow/${userId}`)
+        return inctanse.delete(`follow/${userId}`)
     }
 }
 export const profileAPI = {
     getUser(userId) {
-        return inctanse.get( baseURL + `profile/` + userId).then(response => response.data)
+        return inctanse.get(`profile/${userId}`).then(response => response.data)
     }
 }
 
-export const headerAPI = {
-    getUserInformation() {
-        return inctanse.get( baseURL + `auth/me`).then(response => response.data)
+export const authAPI = {
+    me() {
+        return inctanse.get(`auth/me`).then(response => response.data)
+
     }
 }
