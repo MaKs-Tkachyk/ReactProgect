@@ -15,7 +15,7 @@ const ProfileInfo = (props) => {
             <div className={s.content__logo}>
                 <img src="https://www.imgacademy.com/themes/custom/imgacademy/images/helpbox-contact.jpg" />
             </div>
-            <ProfileStatus profile={props.profile} />
+            <ProfileStatus profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
         </div>
     )
 }

@@ -25,6 +25,12 @@ export const usersAPI = {
 export const profileAPI = {
     getUser(userId) {
         return inctanse.get(`profile/${userId}`).then(response => response.data)
+    },
+    getStatus(userId) {
+        return inctanse.get(`profile/status/${userId}`)
+    },
+    updateStatus(status) {
+        return inctanse.put(`profile/status`, { status: status })
     }
 }
 
