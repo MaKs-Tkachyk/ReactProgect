@@ -10,6 +10,7 @@
 .userImg img {
   margin-right: 40px;
   border-radius: 10px;
+  height: 100px;
 }
 .user_Information h1 {
   text-transform: uppercase;
@@ -23,7 +24,7 @@
   padding: 3px;
   border-radius: 50%;
   cursor: pointer;
-  transition: 500ms
+  transition: 500ms;
 }
 .social_groups img:hover {
   background: #ff9a3b;

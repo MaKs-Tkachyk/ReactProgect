@@ -1,5 +1,4 @@
 
-import Preloader from "../../common/preloader/Preloader"
 import s from "./ProfileInfo.module.css"
 import veka from '../../../social_groups/veka.png'
 import facebook from '../../../social_groups/facebook.png'
@@ -7,6 +6,7 @@ import instagram from '../../../social_groups/instagram.png'
 import twitter from '../../../social_groups/twitter.png'
 import youtube from '../../../social_groups/youtube.png'
 import React from "react"
+import user from '../../../assets/images/user.jfif'
 
 
 
@@ -39,6 +39,14 @@ class ProfileStatus extends React.Component {
         })
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.status != this.state.status) {
+            this.setState({
+                status: this.state.status
+            })
+        }
+    }
+
 
 
 
@@ -46,7 +54,7 @@ class ProfileStatus extends React.Component {
         return (
             <div className={s.user_acaunt}>
                 <div className={s.userImg}>
-                    <img src={this.props.profile.photos.small} />
+                    <img src={!this.props.profile.photos.small ? user : this.props.profile.photos.small} />
                 </div>
                 <div className={s.user_Information}>
                     <h1>{this.props.profile.fullName}</h1>
