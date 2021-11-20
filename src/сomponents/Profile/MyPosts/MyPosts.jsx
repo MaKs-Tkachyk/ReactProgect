@@ -1,34 +1,56 @@
 import s from "./MyPosts.module.css"
 import React from "react"
 import Post from "./Post/Post"
+import { reduxForm, Field } from 'redux-form';
+import { maxLenghtCreator, requared } from "../../../utils/validators/validators";
+import TextArea from "../../common/FormControls/FormControlsTextArea";
+
+
+
+
+
+const maxLength10 = maxLenghtCreator(10)
+
+const MYPostForm = (props) => {
+
+
+
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div className={s.MyPost__formWritter}>
+                <Field name="newPost" component={TextArea}
+                    className={s.MyPost__textarea} placeholder="your news..."
+                    value={props.newPostText} validate={[requared, maxLength10]} />
+                <button className={s.MyPost__button}  >Add Post</button>
+            </div>
+        </form>)
+}
+
+
+const MyPostsReduxForm = reduxForm({ form: 'myPostsForm', })(MYPostForm)
+
+
 
 const MyPosts = (props) => {
 
 
 
     let postsElements = props.posts.map((post) => <Post message={post.message} likeCount={post.likeCount} />)
-    let newPostElement = React.createRef()
 
 
-    let onAddPost = () => {
-        props.AddPost()
+
+    let onAddPost = (newPost) => {
+        props.AddPost(newPost.newPost)
     }
 
-    let onPostChange = () => {
-        let text = newPostElement.current.value
-        props.updateNewPostText(text)
-    }
+
 
 
     return (
 
         <div className={s.MyPost}>
             myPost
-            <div className={s.MyPost__formWritter}>
-                <textarea onChange={onPostChange} ref={newPostElement}  value={props.newPostText} className={s.MyPost__textarea} placeholder="your news..."
-                    value={props.newPostText} />
-                <button className={s.MyPost__button} onClick={onAddPost}  >Add Post</button>
-            </div>
+            <MyPostsReduxForm onSubmit={onAddPost} />
             <div>
                 newPost
             </div>
@@ -39,5 +61,7 @@ const MyPosts = (props) => {
 
     )
 }
+
+
 
 export default MyPosts

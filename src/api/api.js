@@ -37,6 +37,12 @@ export const profileAPI = {
 export const authAPI = {
     me() {
         return inctanse.get(`auth/me`).then(response => response.data)
-
+    },
+    login(email, password, rememberMe=false) {
+        return inctanse.post(`auth/login`, { email, password, rememberMe})
+    },
+    loginOut() {
+        return inctanse.delete(`auth/login`)
     }
+
 }

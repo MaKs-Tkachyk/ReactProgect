@@ -1,5 +1,5 @@
 const ADD_DIALOG = "ADD-DIALOG"
-const UPDATE_NEW_DIALOG_TEXT = "UPDATE-NEW-DIALOG-TEXT"
+
 
 
 let initialState = {
@@ -15,7 +15,7 @@ let initialState = {
         { name: "Sergiy ", id: "3" },
         { name: "Bogdan ", id: "4" },
     ],
-    newDialogsText: "",
+
 }
 
 
@@ -28,22 +28,15 @@ const dialogsReducer = (state = initialState, action) => {
         case ADD_DIALOG: {
             let newDialog = {
                 id: 5,
-                message: state.newDialogsText,
+                message: action.newMessage,
             }
             return {
                 ...state,
                 messages: [...state.messages, newDialog],
-                newDialogsText: ""
+ 
 
             }
   
-        }
-        case UPDATE_NEW_DIALOG_TEXT: {
-            return {
-                ...state,
-                newDialogsText: action.newText
-            }
-
         }
 
         default:
@@ -52,7 +45,7 @@ const dialogsReducer = (state = initialState, action) => {
 }
 
 
-export const AddDialogActionCreator = () => ({ type: ADD_DIALOG })
-export const newDialogsTextActionCreator = (text) => ({ type: UPDATE_NEW_DIALOG_TEXT, newText: text })
+export const AddDialogActionCreator = (newMessage) => ({ type: ADD_DIALOG , newMessage})
+
 
 export default dialogsReducer
