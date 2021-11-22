@@ -5,6 +5,7 @@ import Users from "./Users"
 import Preloader from "../common/preloader/Preloader"
 import { withAuthRedirect } from "../../hoc/withAuthRedirect"
 import { compose } from "redux"
+import { getCurrentPage, getFollowingInProgress, getIsSwitching, getPageSize, getTotalUserCount, getUser } from "../../Redux/users-selectors"
 
 
 
@@ -41,14 +42,24 @@ class containerComponent extends React.Component {
 
 
 
+// let mapStateToProps = (state) => {
+//     return {
+//         users: state.usersPage.users,
+//         pageSize: state.usersPage.pageSize,
+//         totalUserCount: state.usersPage.totalUserCount,
+//         currentPage: state.usersPage.currentPage,
+//         isSwitching: state.usersPage.isSwitching,
+//         followingInProgress: state.usersPage.followingInProgress
+//     }
+// }
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUserCount: state.usersPage.totalUserCount,
-        currentPage: state.usersPage.currentPage,
-        isSwitching: state.usersPage.isSwitching,
-        followingInProgress: state.usersPage.followingInProgress
+        users: getUser(state),
+        pageSize: getPageSize(state),
+        totalUserCount: getTotalUserCount(state),
+        currentPage: getCurrentPage(state),
+        isSwitching: getIsSwitching(state),
+        followingInProgress: getFollowingInProgress(state)
     }
 }
 

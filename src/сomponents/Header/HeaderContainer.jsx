@@ -7,10 +7,7 @@ import Header from "./Header"
 
 class HeaderContainer extends React.Component {
 
-    componentDidMount() {
-        this.props.getAuthUsersData()
 
-    }
 
     render() {
         return (
@@ -28,4 +25,4 @@ let mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, { getAuthUsersData, loginOut })(HeaderContainer)
+export default connect(mapStateToProps, { loginOut })(HeaderContainer)

@@ -2,6 +2,7 @@
 import Preloader from "../../common/preloader/Preloader"
 import s from "./ProfileInfo.module.css"
 import ProfileStatus from "./ProfileStatus"
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks"
 
 const ProfileInfo = (props) => {
 
@@ -15,7 +16,7 @@ const ProfileInfo = (props) => {
             <div className={s.content__logo}>
                 <img src="https://www.imgacademy.com/themes/custom/imgacademy/images/helpbox-contact.jpg" />
             </div>
-            <ProfileStatus profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
+            <ProfileStatusWithHooks profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
         </div>
     )
 }
