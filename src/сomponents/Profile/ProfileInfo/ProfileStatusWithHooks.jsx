@@ -5,7 +5,7 @@ import facebook from '../../../social_groups/facebook.png'
 import instagram from '../../../social_groups/instagram.png'
 import twitter from '../../../social_groups/twitter.png'
 import youtube from '../../../social_groups/youtube.png'
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import user from '../../../assets/images/user.jfif'
 
 
@@ -14,6 +14,12 @@ const ProfileStatusWithHooks = (props) => {
 
     let [editMode, setEditMode] = useState(false)
     let [status, setStatus] = useState(props.status)
+
+
+      useEffect(()=>{
+        setStatus(props.status)
+      }, [props.status])
+
 
     const activateEditMode = () => {
         setEditMode(true)
